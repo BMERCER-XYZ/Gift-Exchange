@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Secret Santa — Reveal & Key Generator</title>
+<title>Skookum & Squeak Gift Exchange</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
 <h2>Reveal your assignment</h2>
 <label for="nameSelect">Select your name</label>
 <select id="nameSelect">
-<option value="">-- choose --</option>
+<option value="">-- who is you 🤔--</option>
 <option value="Ben">Ben</option>
 <option value="Bailey">Bailey</option>
 <option value="Hayden">Hayden</option>
@@ -22,31 +22,39 @@
 <option value="Maddy">Maddy</option>
 </select>
 
-<label for="privateKey">Paste your private key (PEM PKCS#8)</label>
-<textarea id="privateKey" placeholder="-----BEGIN PRIVATE KEY-----\n..."></textarea>
+<label for="privateKey">Paste your private key</label>
+<textarea id="privateKey" placeholder="Private Key Goes Here"></textarea>
 
 <div class="row">
-<button id="decryptBtn">Decrypt Assignment</button>
-<button id="pasteTestKey">Paste Test Private Key</button>
+<button id="decryptBtn">Decrypt</button>
 </div>
 
 <div id="result" class="result"></div>
 </section>
 
 <section class="card">
-<h2>Generate RSA key pair (in your browser)</h2>
-<p>This generates a 2048-bit RSA key pair in the browser. The <strong>private key</strong> is for you only — keep it secret. The <strong>public key</strong> is what you should give to the organizer (rename to <code>Name.pem</code> and they will use it to produce encrypted assignments).</p>
+<h2>Generate key pair (in your browser)</h2>
 
 <label for="keyName">Name for key files</label>
-<input id="keyName" placeholder="YourName (eg. Ben)" />
+<select id="keyName">
+<option value="">-- who is you 🤔--</option>
+<option value="Ben">Ben</option>
+<option value="Bailey">Bailey</option>
+<option value="Hayden">Hayden</option>
+<option value="Ethan">Ethan</option>
+<option value="Maddy">Maddy</option>
+</select>
 
 <div class="row">
 <button id="genBtn">Generate Keys</button>
-<button id="downloadPubBtn" disabled>Download public_key.pem</button>
-<button id="downloadPrivBtn" disabled>Download private_key.pem</button>
 </div>
 
-<div class="small">After generating: download both your keys, then send the public key to Ben (only the public key). Keep your private key private.</div>
+<label for="publicKeyOutput">Public Key (send this to Ben)</label>
+<textarea id="publicKeyOutput" readonly></textarea>
+
+<label for="privateKeyOutput">Private Key (dont send this one)</label>
+<textarea id="privateKeyOutput" readonly></textarea>
+
 
 <pre id="fingerprint" class="fingerprint"></pre>
 </section>
