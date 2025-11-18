@@ -33,13 +33,14 @@ def load_public_keys(filename='assignments.json'):
 def create_assignments(names):
     """Create a random gift exchange assignment (Secret Santa style)"""
     # Ensure each person doesn't get assigned to themselves or create mutual assignments
+    # Also prevent Ethan and Maddy from being assigned to each other
     max_attempts = 1000
     for attempt in range(max_attempts):
         assignments = {}
         shuffled = names.copy()
         random.shuffle(shuffled)
         
-        # Check that no one is assigned to themselves or mutually to each other
+        # Check validity
         valid = True
         for i, giver in enumerate(names):
             receiver = shuffled[i]
@@ -53,6 +54,10 @@ def create_assignments(names):
                 if receiver_gets == giver:
                     valid = False
                     break
+            # Check: Ethan and Maddy cannot be assigned to each other
+            if (giver == "Ethan" and receiver == "Maddy") or (giver == "Maddy" and receiver == "Ethan"):
+                valid = False
+                break
         
         if valid:
             for i, giver in enumerate(names):
